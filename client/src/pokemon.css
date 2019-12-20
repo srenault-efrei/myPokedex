@@ -1,0 +1,35 @@
+.img-pokemon{
+    width: 150px;
+    margin: auto;
+    margin-top:20px;
+    border-radius: 5px
+}
+
+.plant-color{
+    background-color:#77c484;
+}
+
+.fire-color{
+    background-color: #f3a460;
+}
+
+.water-color{
+    background-color: #96b0f4;
+}
+
+.card{
+    width: 13rem;
+    text-align: center;
+    margin: 20px;
+    border-style: none !important;
+    display: inline-block !important;
+  
+}
+
+.content{
+    text-align: center
+}
+
+.card-id{
+    color : grey;
+}
