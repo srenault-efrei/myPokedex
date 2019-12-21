@@ -1,5 +1,6 @@
 import React from 'react';
-import './pokemon.css';
+import './pokemons.css';
+import ProfilePokemon from './ProfilePokemon'
 
 export default class Pokemons extends React.Component {
 
@@ -8,10 +9,15 @@ export default class Pokemons extends React.Component {
     this.state = {
       pokemons: []
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
     this.fetchPokemons()
+  }
+  handleClick(){
+    new ProfilePokemon()
+    console.log("test")
   }
 
   async fetchPokemons() {
@@ -36,18 +42,22 @@ export default class Pokemons extends React.Component {
         {
           pokemons.map(pokemon => (
 
-            <div Key={pokemon.ndex} class="card">
+            <div Key={pokemon.ndex} class="card" onClick={this.handleClick}>
+             
+                {/* <img class="img-pokemon fire-color" */}
+                <img class={`img-pokemon ${pokemon.type1}-color`}
 
-              <img class="img-pokemon fire-color"
-                src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.ndex}.png`}
-                alt="Pokemon">
-              </img>
+                  src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.ndex}.png`}
+                  alt="Pokemon">
+                </img>
 
-              <div class="card-body">
-                <span class="card-id ">#{pokemon.ndex} </span>
-                <h5 class="card-title">{pokemon.nom} </h5>
-                <button class="btn btn-success disabled">plante</button>
-              </div>
+                <div class="card-body">
+                  <span class="card-id ">#{pokemon.ndex} </span>
+                  <h5 class="card-title">{pokemon.nom} </h5>
+                  <button class={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
+
+                </div>
+          
             </div>
           ))
         }
