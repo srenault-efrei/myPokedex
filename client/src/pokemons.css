@@ -14,7 +14,7 @@
 }
 
 .Électrique-color{
-    background-color: yellow !important;
+    background-color: #FAE14C !important;
 }
 
 .Sol-color{
@@ -57,6 +57,13 @@
 .Spectre-color{
     background-color:#a29db9 !important;
 }
+.Vol-color{
+    background-color:#a890f1 !important;
+}
+
+.Acier-color{
+    background-color:grey !important;
+}
 
 
 
@@ -96,6 +103,8 @@
     color : black !important;
     font-weight: bold !important;
     border-color: none !important;
+    margin-left : 5px !important;
+    margin-top: 5px !important;
 }
 
 a{
