@@ -1,5 +1,6 @@
 import React from 'react';
 import './pokemons.css';
+import Layout from './Layout'
 import ProfilePokemon from './ProfilePokemon'
 
 export default class Pokemons extends React.Component {
@@ -7,7 +8,9 @@ export default class Pokemons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemons: []
+      pokemons: [],
+      isClick: false,
+      ndex: null
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -15,10 +18,16 @@ export default class Pokemons extends React.Component {
   componentDidMount() {
     this.fetchPokemons()
   }
-  handleClick(){
-    new ProfilePokemon()
-    console.log("test")
+
+  handleClick(id, e) {
+    e.preventDefault();
+    this.setState({
+      isClick: true,
+      ndex: id
+    });
   }
+
+
 
   async fetchPokemons() {
 
@@ -27,6 +36,7 @@ export default class Pokemons extends React.Component {
         'Content-Type': 'application/json'
       }
     })
+
     const data = await response.json();
 
     this.setState({
@@ -35,18 +45,24 @@ export default class Pokemons extends React.Component {
   }
 
   render() {
-    const { pokemons } = this.state
+
+    const { pokemons, ndex } = this.state
+
+
+    if (this.state.isClick === true) {
+      return <ProfilePokemon ndex={ndex} />
+    }
+
     return (
-      <div class='content'>
+      <div>
+        <Layout />
 
-        {
-          pokemons.map(pokemon => (
+        <div class='content'>
+          {
+            pokemons.map(pokemon => (
+              <div Key={pokemon.ndex} class="card" onClick={(e) => this.handleClick(pokemon.ndex, e)} >
 
-            <div Key={pokemon.ndex} class="card" onClick={this.handleClick}>
-             
-                {/* <img class="img-pokemon fire-color" */}
                 <img class={`img-pokemon ${pokemon.type1}-color`}
-
                   src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.ndex}.png`}
                   alt="Pokemon">
                 </img>
@@ -55,12 +71,12 @@ export default class Pokemons extends React.Component {
                   <span class="card-id ">#{pokemon.ndex} </span>
                   <h5 class="card-title">{pokemon.nom} </h5>
                   <button class={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
-
                 </div>
-          
-            </div>
-          ))
-        }
+
+              </div>
+            ))
+          }
+        </div>
       </div>
     );
   }

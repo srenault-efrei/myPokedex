@@ -4,7 +4,20 @@ const pokemons = require('../data/pokedex.json')
 const api = Router()
 
 api.get('/', function (req, res) {
-    res.json(pokemons)
-  })
+  res.json(pokemons)
+})
 
-  module.exports = api
+api.get('/:id', function (req, res) {
+  let tabPokemon = []
+  let id = req.params.id
+  for (const pokemon of pokemons) {
+
+    if (pokemon.ndex === id) {
+      tabPokemon.push(pokemon)
+    }
+  }
+  res.json(tabPokemon)
+
+})
+
+module.exports = api

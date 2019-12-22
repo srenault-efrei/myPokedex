@@ -9,6 +9,9 @@ const port = 4000
 app.use(cors())
 app.use('/pokemons',api);
 
+
+
+
 app.listen(port, function () {
   console.log(chalk.blue('Example app listening on port '+port+' !'))
 }) 

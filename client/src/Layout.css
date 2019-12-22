@@ -1,0 +1,17 @@
+/* EN TETE */
+
+.header{
+    text-align: center;
+    margin-top : 50px;
+    margin-bottom: 50px;
+   
+  }
+  
+  h1{
+    color:red
+  }
+  
+  .fit-picture{
+    width: 400px
+  }
+  
