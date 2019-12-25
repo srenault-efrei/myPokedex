@@ -42,10 +42,14 @@ export default class ProfilePokemon extends React.Component {
   
     return (
       <div>
-
+        <a href ='/'>
+          <img src='https://cdn.icon-icons.com/icons2/562/PNG/512/arrow-address-back_icon-icons.com_54065.png'
+          alt = 'fleche'
+          class='fleche-picture'>
+          </img>
+        </a>
+   
         <div class='content'>
-
-
           {
             dataPokemon.map(pokemon => (
               <div class="profile">
@@ -119,6 +123,46 @@ export default class ProfilePokemon extends React.Component {
                   </tbody>
                 </table>
                 <h4 class={` ${pokemon.type1}-color`}>Autres informations</h4>
+
+                <table class='tabless'>
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td> <strong>Nomen : </strong>{pokemon.nomen} m</td>
+                      <td> <strong>Nomja :</strong> {pokemon.nomja} kg</td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Nomtm :</strong> {pokemon.nomtm}</td>
+                      <td> <strong>Nomde :</strong> {pokemon.nomde}</td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Odex : </strong>{pokemon.odex}</td>
+                      <td> <strong>Opdex : </strong>{pokemon.opdex}</td>
+                    </tr>
+
+                    <tr>
+                      <td> <strong>Fmratio : </strong>{pokemon.fmratio}</td>
+                      <td> <strong>Oeufpas : </strong>{pokemon.oeufpas}</td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Expmax : </strong>{pokemon.expmax}</td>
+                      <td> <strong>Captureval : </strong>{pokemon.captureval}</td>
+                    </tr>
+                    <tr>
+                      <td> <strong>Forme : </strong>{pokemon.forme}</td>
+                      <td> <strong>Oeufpas : </strong>{pokemon.oeufpas}</td>
+                    </tr>
+                  </tbody>
+
+                </table>
+
               </div>
             ))
           }
