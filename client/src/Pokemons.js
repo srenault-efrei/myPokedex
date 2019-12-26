@@ -10,8 +10,11 @@ export default class Pokemons extends React.Component {
     this.state = {
       fixePokemons: [],
       pokemons: [],
+      // tabChange: []
     };
     this.handleChange = this.handleChange.bind(this);
+    this.selectChange = this.selectChange.bind(this);
+
 
   }
 
@@ -37,7 +40,7 @@ export default class Pokemons extends React.Component {
 
   handleChange(event) {
 
-    let searchPokemon = [];
+    let finalTab = [];
     let fixePokemons = this.state.fixePokemons;
     let targetValue = ''
 
@@ -50,12 +53,37 @@ export default class Pokemons extends React.Component {
     for (const pokemon of fixePokemons) {
 
       if (pokemon['nom'].match(targetValue)) {
-        searchPokemon.push(pokemon)
+        finalTab.push(pokemon)
       }
     }
     this.setState({
-      pokemons: searchPokemon
+      pokemons: finalTab,
     })
+
+  }
+
+  selectChange(event) {
+
+    let finalTab = [];
+    let fixePokemons = this.state.fixePokemons;
+
+    if (event.target.value === 'Catégorie') {
+      this.setState({
+        pokemons: fixePokemons
+      })
+    } else {
+      for (const pokemon of fixePokemons) {
+        if (pokemon['type1'] === event.target.value || pokemon['type2'] === event.target.value) {
+          finalTab.push(pokemon)
+        }
+      }
+      this.setState({
+        pokemons: finalTab
+      })
+    }
+
+
+
 
   }
 
@@ -68,14 +96,47 @@ export default class Pokemons extends React.Component {
 
       <div>
         <Layout />
+        {/* ----------------------------- SEARCH  ---------------------------------------- */}
 
-        <div class="input-group  mb-3 col-md-4 search">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">Nom</span>
+        {/* ----------------------------- FILTER  ---------------------------------------- */}
+
+        <form>
+          <div class="form-row align-items-center">
+            <div class="col-auto col-md-3">
+              <div class="input-group mb-2 ">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Nom</div>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-defaults"
+                  onChange={this.handleChange} />
+              </div>
+            </div>
+
+            <div class="col-auto col-md-3">
+              <div class="input-group mb-2">
+                <select id="inputState" class="form-control" onChange={this.selectChange}>
+                  <option selected>Catégorie</option>
+                  <option>Plante</option>
+                  <option>Poison</option>
+                  <option>Insecte</option>
+                  <option>Psy</option>
+                  <option>Combat</option>
+                  <option>Sol</option>
+                  <option>Roche</option>
+                  <option>Normal</option>
+                  <option>Eau</option>
+                  <option>Feu</option>
+                  <option>Glace</option>
+                  <option>Vol</option>
+
+                </select>
+              </div>
+            </div>
+
           </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-defaults"
-            onChange={this.handleChange} />
-        </div>
+        </form>
+        {/* ----------------------------- CONTENT  ---------------------------------------- */}
+
         <div class='content'>
           {
             pokemons.map(pokemon => (
