@@ -10,7 +10,6 @@ export default class Pokemons extends React.Component {
     this.state = {
       fixePokemons: [],
       pokemons: [],
-      // tabChange: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.selectChange = this.selectChange.bind(this);
@@ -58,11 +57,14 @@ export default class Pokemons extends React.Component {
     }
     this.setState({
       pokemons: finalTab,
+      changeName: true
     })
 
   }
 
   selectChange(event) {
+
+    console.log(event.target)
 
     let finalTab = [];
     let fixePokemons = this.state.fixePokemons;
@@ -81,10 +83,6 @@ export default class Pokemons extends React.Component {
         pokemons: finalTab
       })
     }
-
-
-
-
   }
 
 
@@ -96,8 +94,6 @@ export default class Pokemons extends React.Component {
 
       <div>
         <Layout />
-        {/* ----------------------------- SEARCH  ---------------------------------------- */}
-
         {/* ----------------------------- FILTER  ---------------------------------------- */}
 
         <form>

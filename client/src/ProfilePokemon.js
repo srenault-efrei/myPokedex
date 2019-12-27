@@ -109,6 +109,7 @@ export default class ProfilePokemon extends React.Component {
                   <tbody>
                     {
                       pokemon.attaques.map(attaque =>(
+
                         <tr>
                         <th>{attaque.niveau}</th>
                         <td>{attaque.nom}</td>
