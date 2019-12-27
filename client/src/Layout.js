@@ -9,9 +9,9 @@ function Layout() {
   return (
 
     <div>
-      <div class="header">
+      <div className="header">
         <h1>POKEDEX</h1>
-        <a href='/'> <img class="fit-picture"
+        <a href='/'> <img className="fit-picture"
           src="https://pokestrat.io/images/badges/19.png"
           alt="Pokemon">
         </img>

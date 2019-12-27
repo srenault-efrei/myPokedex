@@ -55,21 +55,19 @@ export default class Pokemons extends React.Component {
         finalTab.push(pokemon)
       }
     }
+
     this.setState({
       pokemons: finalTab,
-      changeName: true
     })
 
   }
 
   selectChange(event) {
 
-    console.log(event.target)
-
     let finalTab = [];
     let fixePokemons = this.state.fixePokemons;
 
-    if (event.target.value === 'Catégorie') {
+    if (event.target.value === 'DEFAULT') {
       this.setState({
         pokemons: fixePokemons
       })
@@ -97,21 +95,21 @@ export default class Pokemons extends React.Component {
         {/* ----------------------------- FILTER  ---------------------------------------- */}
 
         <form>
-          <div class="form-row align-items-center">
-            <div class="col-auto col-md-3">
-              <div class="input-group mb-2 ">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">Nom</div>
+          <div className="form-row align-items-center">
+            <div className="col-auto col-md-3">
+              <div className="input-group mb-2 ">
+                <div className="input-group-prepend">
+                  <div className="input-group-text">Nom</div>
                 </div>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-defaults"
+                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-defaults"
                   onChange={this.handleChange} />
               </div>
             </div>
 
-            <div class="col-auto col-md-3">
-              <div class="input-group mb-2">
-                <select id="inputState" class="form-control" onChange={this.selectChange}>
-                  <option selected>Catégorie</option>
+            <div className="col-auto col-md-3">
+              <div className="input-group mb-2">
+                <select  defaultValue={'Catégorie'} id="inputState" className="form-control" onChange={this.selectChange}>
+                  <option value ="DEFAULT">Catégorie</option>
                   <option>Plante</option>
                   <option>Poison</option>
                   <option>Insecte</option>
@@ -133,21 +131,23 @@ export default class Pokemons extends React.Component {
         </form>
         {/* ----------------------------- CONTENT  ---------------------------------------- */}
 
-        <div class='content'>
+        <div className='content'>
           {
             pokemons.map(pokemon => (
-              <div Key={pokemon.ndex} class="card">
+              <div key={pokemon.ndex} className="card">
                 <a href={`/pokemon/${pokemon.ndex}`}>
-                  <img class={`img-pokemon ${pokemon.type1}-color`}
+                  <img className={`img-pokemon ${pokemon.type1}-color`}
                     src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.ndex}.png`}
                     alt="Pokemon">
                   </img>
 
-                  <div class="card-body">
-                    <span class="card-id ">#{pokemon.ndex} </span>
-                    <h5 class="card-title">{pokemon.nom} </h5>
-                    <button class={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
-                    <button class={`btn  ${pokemon.type2}-color disabled `}>{pokemon.type2}</button>
+                  <div className="card-body">
+                    <span className="card-id ">#{pokemon.ndex} </span>
+                    <h5 className="card-title">{pokemon.nom} </h5>
+                    <button className={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
+                    {pokemon.type2 === undefined ? '' :
+                      <button className={`btn  ${pokemon.type2}-color disabled `}>{pokemon.type2}</button>
+                    }
 
                   </div>
                 </a>

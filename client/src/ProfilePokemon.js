@@ -32,39 +32,46 @@ export default class ProfilePokemon extends React.Component {
     });
   }
 
+  getCapspe(string) {
 
+    let indexLetter = string.indexOf('(');
+
+    if (string.match('capacitéspéciale')) {
+      return string.slice(0, indexLetter)
+    }
+    else {
+      return string
+    }
+  }
 
   render() {
 
     const { dataPokemon } = this.state
-
-    console.log(dataPokemon)
-  
     return (
       <div>
-        <a href ='/'>
-          <img src='https://cdn.icon-icons.com/icons2/562/PNG/512/arrow-address-back_icon-icons.com_54065.png'
-          alt = 'fleche'
-          class='fleche-picture'>
+        <a href='/'>
+          <img src='https://image.flaticon.com/icons/png/512/84/84339.png'
+            alt='fleche'
+            className='fleche-picture'>
           </img>
         </a>
-   
-        <div class='content'>
+
+        <div className='content'>
           {
             dataPokemon.map(pokemon => (
-              <div class="profile">
-                <h2 class={` ${pokemon.type1}-color`}>{pokemon.nom} #{pokemon.ndex}</h2>
-                <img class='img-profile'
+              <div key={pokemon.ndex} className="profile">
+                <h2 className={` ${pokemon.type1}-color`}>{pokemon.nom} #{pokemon.ndex}</h2>
+                <img className='img-profile'
                   src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.ndex}.png`}
                   alt="Pokemon">
                 </img>
-                <button class={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
-                <button class={`btn  ${pokemon.type2}-color disabled `}>{pokemon.type2}</button>
+                <button className={`btn  ${pokemon.type1}-color disabled `}>{pokemon.type1}</button>
+                <button className={`btn  ${pokemon.type2}-color disabled `}>{pokemon.type2}</button>
 
                 <br></br>
-                <h4 class={` ${pokemon.type1}-color`}>Profile</h4>
+                <h4 className={` ${pokemon.type1}-color`}>Profile</h4>
 
-                <table class='tabless'>
+                <table className='tabless'>
                   <thead>
                     <tr>
                       <th></th>
@@ -80,7 +87,7 @@ export default class ProfilePokemon extends React.Component {
                     </tr>
                     <tr>
                       <td> <strong>Groupoeuf1 :</strong> {pokemon.groupoeuf1}</td>
-                      <td> <strong>Groupoeuf2 :</strong> {pokemon.groupoeuf2}</td>
+                      <td> <strong>Groupoeuf2 :</strong> {pokemon.groupoeuf2 === undefined ? 'Aucun' : pokemon.groupoeuf2}</td>
                     </tr>
                     <tr>
                       <td> <strong>Espece : </strong>{pokemon.espece}</td>
@@ -88,15 +95,15 @@ export default class ProfilePokemon extends React.Component {
                     </tr>
 
                     <tr>
-                      <td> <strong>Capspe1 : </strong>{pokemon.capspe1}</td>
-                      <td> <strong>Capspe2 : </strong>{pokemon.capspe2}</td>
+                      <td> <strong>Capspe1 : </strong>{pokemon.capspe1 === undefined ? 'Aucun' : this.getCapspe(pokemon.capspe1)}</td>
+                      <td> <strong>Capspe2 : </strong>{pokemon.capspe2 === undefined ? 'Aucun' : this.getCapspe(pokemon.capspe2)}</td>
                     </tr>
                   </tbody>
 
                 </table>
 
-                <h4 class={` ${pokemon.type1}-color`}>Attaques</h4>
-                <table class="table">
+                <h4 className={` ${pokemon.type1}-color`}>Attaques</h4>
+                <table className="table">
                   <thead>
                     <tr>
                       <th scope="col">Niveau</th>
@@ -108,24 +115,25 @@ export default class ProfilePokemon extends React.Component {
                   </thead>
                   <tbody>
                     {
-                      pokemon.attaques.map(attaque =>(
+                      pokemon.attaques.map(attaque => (
 
-                        <tr>
-                        <th>{attaque.niveau}</th>
-                        <td>{attaque.nom}</td>
-                        <td>{attaque.puissance}</td>
-                        <td>{attaque.precision}</td>
-                        <td>{attaque.pp}</td>
-                      </tr>
+                        <tr key={attaque.nom}>
+
+                          <th>{attaque.niveau === 'Départ' ? 'N.1' : attaque.niveau}</th>
+                          <td>{attaque.nom}</td>
+                          <td>{attaque.puissance}</td>
+                          <td>{attaque.precision}</td>
+                          <td>{attaque.pp}</td>
+                        </tr>
                       ))
                     }
-                   
-                    
+
+
                   </tbody>
                 </table>
-                <h4 class={` ${pokemon.type1}-color`}>Autres informations</h4>
+                <h4 className={` ${pokemon.type1}-color`}>Autres informations</h4>
 
-                <table class='tabless'>
+                <table className='tabless'>
                   <thead>
                     <tr>
                       <th></th>
@@ -144,8 +152,8 @@ export default class ProfilePokemon extends React.Component {
                       <td> <strong>Nomde :</strong> {pokemon.nomde}</td>
                     </tr>
                     <tr>
-                      <td> <strong>Odex : </strong>{pokemon.odex}</td>
-                      <td> <strong>Opdex : </strong>{pokemon.opdex}</td>
+                      <td> <strong>Odex : </strong>{pokemon.odex === undefined ? 'Aucun' : pokemon.odex}</td>
+                      <td> <strong>Opdex : </strong>{pokemon.opdex === undefined ? 'Aucun' : pokemon.opdex}</td>
                     </tr>
 
                     <tr>
